@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, Dialog, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import Result from './components/Result';
@@ -25,7 +26,7 @@ function App() {
         }
 
         setGender(newGender);
-        setTextResult((prev) => (prev = `${name} is ${gender}`));
+        setTextResult((_prev) => (_prev = `${name} is ${gender}`));
         console.log(newGender);
     }
 
@@ -51,7 +52,8 @@ function App() {
                     component: 'form',
                     onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
                         event.preventDefault();
-                        const inputName = event.currentTarget.name.value;
+                        const form = event.currentTarget;
+                        const inputName = (form.elements.namedItem('name') as HTMLInputElement)?.value;
                         setName(inputName);
                     },
                 }}
